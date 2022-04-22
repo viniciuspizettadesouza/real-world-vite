@@ -1,20 +1,7 @@
-import { createStore } from 'redux';
+import { configureStore } from '@reduxjs/toolkit'
 
-const INITIAL_STATE = {
-    data: [
-        'react native', 'react'
-    ]
-}
+import reducer from "../reducer";
 
-function courses (state = INITIAL_STATE, action: { type: any; title: any; }) {
-    switch (action.type) {
-        case 'ADD':
-            return {...state, data: [...state.data, action.title]}
-        default:
-            return state
-    }
-}
-
-const store = createStore(courses)
-
-export default store
+export const store = configureStore({
+  reducer
+});

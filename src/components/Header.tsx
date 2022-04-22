@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const LoggedOutView = props => {
+const LoggedOutView = (props: { currentUser: any }) => {
   if (!props.currentUser) {
     return (
       <ul className="nav navbar-nav pull-xs-right">
@@ -30,7 +30,7 @@ const LoggedOutView = props => {
   return null;
 };
 
-const LoggedInView = props => {
+const LoggedInView = (props: { currentUser: any }) => {
   if (props.currentUser) {
     return (
       <ul className="nav navbar-nav pull-xs-right">
@@ -55,10 +55,10 @@ const LoggedInView = props => {
 
         <li className="nav-item">
           <Link
-            to={`/@${props.currentUser.username}`}
+            to={ `/@${ props.currentUser.username }` }
             className="nav-link">
-            <img src={props.currentUser.image} className="user-pic" alt={props.currentUser.username} />
-            {props.currentUser.username}
+            <img src={ props.currentUser.image } className="user-pic" alt={ props.currentUser.username }/>
+            { props.currentUser.username }
           </Link>
         </li>
 
@@ -69,23 +69,19 @@ const LoggedInView = props => {
   return null;
 };
 
-class Header extends React.Component {
-  render() {
-    return (
-      <nav className="navbar navbar-light">
-        <div className="container">
+export default function Header (props: any) {
+  return (
+    <nav className="navbar navbar-light">
+      <div className="container">
 
-          <Link to="/" className="navbar-brand">
-            {this.props.appName.toLowerCase()}
-          </Link>
+        <Link to="/" className="navbar-brand">
+          { props.appName.toLowerCase() }
+        </Link>
 
-          <LoggedOutView currentUser={this.props.currentUser} />
+        <LoggedOutView currentUser={ props.currentUser }/>
 
-          <LoggedInView currentUser={this.props.currentUser} />
-        </div>
-      </nav>
-    );
-  }
+        <LoggedInView currentUser={ props.currentUser }/>
+      </div>
+    </nav>
+  );
 }
-
-export default Header;

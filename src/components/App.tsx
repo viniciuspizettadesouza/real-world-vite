@@ -1,25 +1,23 @@
 import * as React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "../index.css";
-import '../App.css'
+import '../App.css';
 import Home from "./Home";
+import { store } from "../store/store";
 import { Provider } from "react-redux";
-import store from '../store/store'
+import Header from "./Header";
 
-export class App extends React.Component {
-    render () {
-        return (
-            <Provider store={ store }>
-                <BrowserRouter>
-                    <div className="pt-20">
-                        <Routes>
-                            <Route path="/" element={ <Home/> }/>
-                        </Routes>
-                    </div>
-                </BrowserRouter>
-            </Provider>
-        )
-    }
+export default function App () {
+  return (
+    <Provider store={ store }>
+      <BrowserRouter>
+        <Header
+          appName="vite react-ts"
+          currentUser=""/>
+        <Routes>
+          <Route path="/" element={ <Home/> }/>
+        </Routes>
+      </BrowserRouter>
+    </Provider>
+  );
 }
-
-export default (App);
